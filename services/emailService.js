@@ -4,11 +4,17 @@ const logger = require('../utils/logger');
 let lastEmailError = null;
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true, // Use SSL/TLS
   auth: {
     user: process.env.SMTP_USER || process.env.EMAIL_USER,
     pass: process.env.SMTP_PASS || process.env.EMAIL_PASS,
   },
+  tls: {
+    // This helps with some cloud network restrictions
+    rejectUnauthorized: false
+  }
 });
 
 const sendMail = async (to, subject, html, options = {}) => {
