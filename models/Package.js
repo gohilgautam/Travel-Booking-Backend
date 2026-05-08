@@ -28,6 +28,12 @@ const packageSchema = new mongoose.Schema(
         endDate: { type: Date },
         featured: { type: Boolean, default: false },
         active: { type: Boolean, default: true },
+        travelMode: { 
+            type: String, 
+            enum: ['Flight', 'Train', 'Bus', 'Cruise', 'Car', 'Mixed'],
+            default: 'Mixed' 
+        },
+        contact: { type: String },
         rating: { type: Number, default: 0 },
         reviewCount: { type: Number, default: 0 },
     },

@@ -12,5 +12,6 @@ router.use('/wishlist', require('../modules/wishlist/wishlist.routes'));
 router.use('/coupons', require('../modules/coupon/coupon.routes'));
 router.use('/categories', require('./categoryRoutes'));
 router.use('/media', require('../modules/media/media.routes'));
+router.use('/contact', require('./contactRoutes'));
 
 module.exports = router;
