@@ -13,14 +13,11 @@ const logger = require('./logger');
 const sendEmail = async ({ email, subject, message, attachments = [] }) => {
   // Create transporter only once (could be cached, but fine for demo)
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || process.env.EMAIL_HOST || 'smtp.gmail.com',
-    port: Number(process.env.SMTP_PORT || process.env.EMAIL_PORT || 465),
-    secure: Number(process.env.SMTP_PORT || process.env.EMAIL_PORT || 465) === 465,
+    service: 'gmail',
     auth: {
       user: process.env.SMTP_USER || process.env.EMAIL_USER,
       pass: process.env.SMTP_PASS || process.env.EMAIL_PASS,
     },
-    connectionTimeout: 10000,
   });
 
   const mailOptions = {
