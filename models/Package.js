@@ -5,6 +5,7 @@ const packageSchema = new mongoose.Schema(
         title: { type: String, required: [true, 'Package title is required'] },
         description: { type: String, required: [true, 'Description is required'] },
         destination: { type: String, required: true },
+        subDestinations: [String],
         location: { type: String },
         category: { type: String, default: 'other' },
         duration: { type: Number, required: true }, // in days
@@ -28,10 +29,10 @@ const packageSchema = new mongoose.Schema(
         endDate: { type: Date },
         featured: { type: Boolean, default: false },
         active: { type: Boolean, default: true },
-        travelMode: { 
-            type: String, 
+        travelMode: {
+            type: String,
             enum: ['Flight', 'Train', 'Bus', 'Cruise', 'Car', 'Mixed'],
-            default: 'Mixed' 
+            default: 'Mixed'
         },
         contact: { type: String },
         rating: { type: Number, default: 0 },

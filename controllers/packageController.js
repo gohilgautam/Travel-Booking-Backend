@@ -86,6 +86,7 @@ exports.createPackage = async (req, res, next) => {
             includes: req.body.includes ? req.body.includes.split(',').map(i => i.trim()) : [],
             amenities: req.body.amenities ? req.body.amenities.split(',').map(a => a.trim()) : [],
             itinerary: req.body.itinerary ? req.body.itinerary.split(',').map(i => i.trim()) : [],
+            subDestinations: req.body.subDestinations ? req.body.subDestinations.split(',').map(s => s.trim()) : [],
         };
         const pkg = await Package.create(packageData);
         res.status(201).json({ success: true, data: pkg });
@@ -124,7 +125,7 @@ exports.updatePackage = async (req, res, next) => {
             }
         }
         // Parse arrays if present
-        const arrayFields = ['amenities', 'itinerary', 'highlights', 'includes'];
+        const arrayFields = ['amenities', 'itinerary', 'highlights', 'includes', 'subDestinations'];
         arrayFields.forEach(field => {
             if (req.body[field] && typeof req.body[field] === 'string') {
                 if (req.body[field].startsWith('[')) {
